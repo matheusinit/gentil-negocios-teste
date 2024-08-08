@@ -24,4 +24,5 @@ model Pessoas {
   observacoes String
 
   @@index(dataNascimento)
+  @@index(nome)
 }
