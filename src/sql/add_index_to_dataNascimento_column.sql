@@ -1,1 +1,1 @@
-CREATE INDEX idx_dataNascimento ON pessoas(dataNascimento);
+CREATE INDEX idx_dataNascimento ON "Pessoas"("dataNascimento");

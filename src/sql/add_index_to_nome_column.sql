@@ -1,1 +1,1 @@
-CREATE INDEX idx_nome ON pessoas(nome);
+CREATE INDEX idx_nome ON "Pessoas"(nome);
