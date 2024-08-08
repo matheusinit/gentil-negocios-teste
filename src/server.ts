@@ -4,8 +4,6 @@ import { db } from './infra/db'
 
 const app = express()
 
-console.log(process.env['DATABASE_URL'])
-
 app.get('/pessoas', async (request: Request, response: Response) => {
   const pessoas = await db.pessoas.findMany()
 
