@@ -10,6 +10,18 @@ app.get('/pessoas', async (request: Request, response: Response) => {
   return response.status(200).json(pessoas)
 })
 
+app.get('/pessoas/:id', async (request: Request, response: Response) => {
+  const id = request.params['id']
+
+  const pessoa = await db.pessoas.findUnique({
+    where: {
+      idPessoa: id
+    }
+  })
+
+  return response.status(200).json(pessoa)
+})
+
 app.post('/pessoas', async (request: Request, response: Response) => {
   const nome = request.body['nome']
   const nomeMae = request.body['nomeMae']
