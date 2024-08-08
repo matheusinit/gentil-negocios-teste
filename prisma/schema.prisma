@@ -22,4 +22,6 @@ model Pessoas {
   dataNascimento DateTime
   salario Int
   observacoes String
+
+  @@index(dataNascimento)
 }
