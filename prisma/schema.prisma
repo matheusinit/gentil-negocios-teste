@@ -25,4 +25,5 @@ model Pessoas {
 
   @@index(dataNascimento)
   @@index(nome)
+  @@unique(cpf)
 }
