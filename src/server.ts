@@ -6,10 +6,10 @@ const app = express()
 
 console.log(process.env['DATABASE_URL'])
 
-app.get('/', async (request: Request, response: Response) => {
-  const count = await db.pessoas.count()
+app.get('/pessoas', async (request: Request, response: Response) => {
+  const pessoas = await db.pessoas.findMany()
 
-  console.log(count)
+  return response.status(200).json(pessoas)
 })
 
 app.post('/pessoas', async (request: Request, response: Response) => {
