@@ -1,12 +1,15 @@
 import express, { Request, Response } from 'express'
 import './config/environment'
+import { db } from './infra/db'
 
 const app = express()
 
 console.log(process.env['DATABASE_URL'])
 
-app.get('/', (request: Request, response: Response) => {
-  return response.status(200).json({ message: 'Hello World' })
+app.get('/', async (request: Request, response: Response) => {
+  const count = await db.pessoas.count()
+
+  console.log(count)
 })
 
 const SERVER_PORT = 5000

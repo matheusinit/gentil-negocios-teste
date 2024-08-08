@@ -15,7 +15,7 @@ datasource db {
 
 model Pessoas {
   idPessoa String @id @default (uuid())
-  nome String
+  nome String @db.VarChar(70)
   dataNascimento DateTime
   salario Int
   observacoes String
