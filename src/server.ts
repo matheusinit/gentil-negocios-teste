@@ -63,7 +63,17 @@ app.put('/pessoas/:id', async (request: Request, response: Response) => {
   return response.status(204).json(pessoa)
 })
 
+app.delete('/pessoas/:id', async (request: Request, response: Response) => {
+  const id = request.params['id']
 
+  const pessoa = await db.pessoas.delete({
+    where: {
+      idPessoa: id
+    },
+  })
+
+  return response.status(204).json(pessoa)
+})
 
 const SERVER_PORT = 5000
 
