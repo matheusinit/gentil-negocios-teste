@@ -61,6 +61,12 @@ app.post('/pessoas', async (request: Request, response: Response) => {
     })
   }
 
+  if (!salario) {
+    return response.status(400).send({
+      message: '\'salario\' is missing. Provide a valid string.'
+    })
+  }
+
   const dataNascimentoISOString = new Date(dataNascimento).toISOString()
 
   const pessoa = await db.pessoas.create({
