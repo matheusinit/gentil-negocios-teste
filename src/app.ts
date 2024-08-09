@@ -67,6 +67,12 @@ app.post('/pessoas', async (request: Request, response: Response) => {
     })
   }
 
+  if (!observacoes) {
+    return response.status(400).send({
+      message: '\'observacoes\' is missing. Provide a valid string.'
+    })
+  }
+
   const dataNascimentoISOString = new Date(dataNascimento).toISOString()
 
   const pessoa = await db.pessoas.create({
