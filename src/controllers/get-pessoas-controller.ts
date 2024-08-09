@@ -11,6 +11,15 @@ class GetPessoasController {
       }
     })
 
+
+    if (!pessoa) {
+      return response.status(404).send({
+        message: 'Pessoas not found'
+      })
+    }
+
+
+
     return response.status(200).json(pessoa)
   }
 }

@@ -13,7 +13,20 @@ class UpdatePessoasController {
     const salario = request.body['salario'] as number | undefined
     const observacoes = request.body['observacoes'] as string | undefined
 
-    const pessoa = await db.pessoas.update({
+    const pessoa = await db.pessoas.findUnique({
+      where: {
+        idPessoa: id
+      }
+    })
+
+
+    if (!pessoa) {
+      return response.status(404).send({
+        message: 'Pessoas not found'
+      })
+    }
+
+    const pessoaUpdated = await db.pessoas.update({
       where: {
         idPessoa: id
       },
@@ -28,7 +41,7 @@ class UpdatePessoasController {
       }
     })
 
-    return response.status(200).send(pessoa)
+    return response.status(200).send(pessoaUpdated)
   }
 }
 
