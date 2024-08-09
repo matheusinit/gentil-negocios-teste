@@ -4,6 +4,8 @@ import { db } from './infra/db'
 
 const app = express()
 
+app.use(express.json())
+
 app.get('/pessoas', async (request: Request, response: Response) => {
   const pessoas = await db.pessoas.findMany()
 
