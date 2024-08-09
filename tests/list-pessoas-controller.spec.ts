@@ -37,4 +37,30 @@ describe('List Pessoas Controller', () => {
       expect(response.body).toEqual([])
     })
   })
+
+  describe('given there is records is database ', () => {
+    it('then should get ok and record', async () => {
+      const pessoa: Pessoa = {
+        nome: "Matheus Fernandes",
+        nomeMae: "Ana Clara Marcedo Fernandes",
+        nomePai: "Mário José Marcedo",
+        cpf: "12345678900",
+        dataNascimento: "1990-03-21",
+        salario: 5000.00,
+        observacoes: "Funcionário do mês"
+      }
+
+      await request(app).post('/pessoas').send(pessoa)
+
+      const response = await request(app).get('/pessoas')
+
+      const pessoaResponse = {
+        ...pessoa,
+        dataNascimento: new Date(pessoa.dataNascimento).toISOString()
+      }
+      expect(response.statusCode).toBe(200)
+      expect(response.body).toEqual(expect.arrayContaining([expect.objectContaining(pessoaResponse)]))
+    })
+  })
+
 })
