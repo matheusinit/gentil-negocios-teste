@@ -31,15 +31,6 @@ describe('Create Pessoas Controller', () => {
 
   describe('given a invalid body', () => {
     it('when \'nome\' is not provided, then should get bad request error', async () => {
-      //const pessoa: Pessoa = {
-      //  nome: "Matheus Fernandes",
-      //  nomeMae: "Ana Clara Marcedo Fernandes",
-      //  nomePai: "Mário José Marcedo",
-      //  cpf: "12345678900",
-      //  dataNascimento: "1990-03-21",
-      //  salario: 5000.00,
-      //  observacoes: "Funcionário do mês"
-      //}
       const pessoa: Pessoa = {
         nomeMae: "Ana Clara Marcedo Fernandes",
         nomePai: "Mário José Marcedo",
@@ -54,6 +45,24 @@ describe('Create Pessoas Controller', () => {
       expect(response.statusCode).toBe(400)
       expect(response.body).toEqual({
         message: '\'nome\' is missing. Provide a valid string.'
+      })
+    })
+
+    it('when \'nomeMae\' is not provided, then should get bad request error', async () => {
+      const pessoa: Pessoa = {
+        nome: "Matheus Fernandes",
+        nomePai: "Mário José Marcedo",
+        cpf: "12345678900",
+        dataNascimento: "1990-03-21",
+        salario: 5000.00,
+        observacoes: "Funcionário do mês"
+      }
+
+      const response = await request(app).post('/pessoas').send(pessoa)
+
+      expect(response.statusCode).toBe(400)
+      expect(response.body).toEqual({
+        message: '\'nomeMae\' is missing. Provide a valid string.'
       })
     })
   })
