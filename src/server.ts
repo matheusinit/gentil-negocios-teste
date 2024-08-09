@@ -25,13 +25,15 @@ app.get('/pessoas/:id', async (request: Request, response: Response) => {
 })
 
 app.post('/pessoas', async (request: Request, response: Response) => {
-  const nome = request.body['nome']
-  const nomeMae = request.body['nomeMae']
-  const nomePai = request.body['nomePai']
-  const cpf = request.body['cpf']
+  const nome = request.body['nome'] as string
+  const nomeMae = request.body['nomeMae'] as string
+  const nomePai = request.body['nomePai'] as string
+  const cpf = request.body['cpf'] as string
   const dataNascimento = request.body['dataNascimento']
-  const salario = request.body['salario']
-  const observacoes = request.body['observacoes']
+  const salario = Number(request.body['salario'])
+  const observacoes = request.body['observacoes'] as string
+
+  const dataNascimentoISOString = new Date(dataNascimento).toISOString()
 
   const pessoa = await db.pessoas.create({
     data: {
@@ -39,7 +41,7 @@ app.post('/pessoas', async (request: Request, response: Response) => {
       nomeMae,
       nomePai,
       cpf,
-      dataNascimento,
+      dataNascimento: dataNascimentoISOString,
       salario,
       observacoes
     }
