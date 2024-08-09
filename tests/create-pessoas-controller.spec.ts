@@ -101,5 +101,23 @@ describe('Create Pessoas Controller', () => {
         message: '\'cpf\' is missing. Provide a valid string.'
       })
     })
+
+    it('when \'dataNascimento\' is not provided, then should get bad request error', async () => {
+      const pessoa: Pessoa = {
+        nome: "Matheus Fernandes",
+        nomeMae: "Ana Clara Marcedo Fernandes",
+        nomePai: "Mário José Marcedo",
+        cpf: "12345678900",
+        salario: 5000.00,
+        observacoes: "Funcionário do mês"
+      }
+
+      const response = await request(app).post('/pessoas').send(pessoa)
+
+      expect(response.statusCode).toBe(400)
+      expect(response.body).toEqual({
+        message: '\'dataNascimento\' is missing. Provide a valid string.'
+      })
+    })
   })
 })
