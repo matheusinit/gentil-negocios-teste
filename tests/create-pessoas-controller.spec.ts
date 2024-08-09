@@ -156,4 +156,23 @@ describe('Create Pessoas Controller', () => {
       })
     })
   })
+
+  describe('given a valid body', () => {
+    it('when all properties is provided, then should get created', async () => {
+      const pessoa: Pessoa = {
+        nome: "Matheus Fernandes",
+        nomeMae: "Ana Clara Marcedo Fernandes",
+        nomePai: "Mário José Marcedo",
+        cpf: "12345678900",
+        dataNascimento: "1990-03-21",
+        salario: 5000.00,
+        observacoes: "Funcionário do mês"
+      }
+
+      const response = await request(app).post('/pessoas').send(pessoa)
+
+      expect(response.statusCode).toBe(201)
+    })
+  })
+
 })
