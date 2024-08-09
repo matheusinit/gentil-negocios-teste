@@ -65,5 +65,23 @@ describe('Create Pessoas Controller', () => {
         message: '\'nomeMae\' is missing. Provide a valid string.'
       })
     })
+
+    it('when \'nomePai\' is not provided, then should get bad request error', async () => {
+      const pessoa: Pessoa = {
+        nome: "Matheus Fernandes",
+        nomeMae: "Ana Clara Marcedo Fernandes",
+        cpf: "12345678900",
+        dataNascimento: "1990-03-21",
+        salario: 5000.00,
+        observacoes: "Funcionário do mês"
+      }
+
+      const response = await request(app).post('/pessoas').send(pessoa)
+
+      expect(response.statusCode).toBe(400)
+      expect(response.body).toEqual({
+        message: '\'nomePai\' is missing. Provide a valid string.'
+      })
+    })
   })
 })
