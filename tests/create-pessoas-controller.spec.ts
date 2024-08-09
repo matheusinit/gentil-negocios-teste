@@ -119,5 +119,23 @@ describe('Create Pessoas Controller', () => {
         message: '\'dataNascimento\' is missing. Provide a valid string.'
       })
     })
+
+    it('when \'salario\' is not provided, then should get bad request error', async () => {
+      const pessoa: Pessoa = {
+        nome: "Matheus Fernandes",
+        nomeMae: "Ana Clara Marcedo Fernandes",
+        nomePai: "Mário José Marcedo",
+        cpf: "12345678900",
+        dataNascimento: "1990-03-21",
+        observacoes: "Funcionário do mês"
+      }
+
+      const response = await request(app).post('/pessoas').send(pessoa)
+
+      expect(response.statusCode).toBe(400)
+      expect(response.body).toEqual({
+        message: '\'salario\' is missing. Provide a valid string.'
+      })
+    })
   })
 })
