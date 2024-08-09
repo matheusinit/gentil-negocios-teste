@@ -8,7 +8,8 @@
     "prod": "node ./dist/server.js",
     "build": "tsup",
     "migrate:dev": "prisma migrate dev",
-    "migrate:prod": "prisma migrate deploy"
+    "migrate:prod": "prisma migrate deploy",
+    "test": "pnpm vitest"
   },
   "keywords": [],
   "author": "",
