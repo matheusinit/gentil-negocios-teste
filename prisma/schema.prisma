@@ -14,7 +14,7 @@ datasource db {
 }
 
 model Pessoas {
-  idPessoa String @id @default (uuid())
+  idPessoa String @id @default(uuid())
   nome String @db.VarChar(70)
   nomeMae String @db.VarChar(70)
   nomePai String @db.VarChar(70)
